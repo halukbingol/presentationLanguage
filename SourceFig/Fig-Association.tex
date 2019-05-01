@@ -1,0 +1,80 @@
+\documentclass[border=3]{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{patterns,calc,angles,quotes,positioning,arrows}
+\usetikzlibrary{math}
+
+
+% ======================================= 
+\begin{document}
+
+
+
+
+%% ======================================= V
+\newcommand{\xyAxis}[6]{% \xyAxis ==== V
+	\def\xMax{#1}
+	\def\yMax{#2}
+	\def\xValue{#3}
+	\def\yValue{#4}
+	\def\xName{#5}
+	\def\yName{#6}
+
+	\draw[gray, very thin] 
+		(0, 0) grid (\xMax, \yMax); 
+		
+	% x-axis
+	\draw [->,thick, orange]
+		(0, 0) -- ({(\xMax+0.5)}, 0)
+		node[anchor=north, xshift=-0 cm] {\xName};
+	\foreach \i in {1, ..., \xMax}{
+		\draw 
+			(\i, -0.05) -- (\i, 0.05)
+			node[anchor=north, xshift=-0 cm] {$\xValue_{\i}$};
+	}
+			
+	% y-axis
+	\draw [->,thick, orange]
+		(0, 0) -- (0, {(\yMax+0.5)})
+		node[anchor=east, xshift=-0 cm] {\yName};
+	\foreach \i in {1, ..., \yMax}{
+		\draw 
+			(-0.05, \i) -- (0.05, \i)
+			node[anchor=east, xshift=-0 cm] {$\yValue_{\i}$};
+	}
+} % \xyAxis ==== A	
+% ======================================= A
+
+
+
+
+
+% ======================================= V
+\begin{tikzpicture}
+	\def \rDot{0.08}
+	\def \sSymbol{\mathcal{S}}
+	\def \sMeaning{\mathcal{M}}	
+
+	\xyAxis {5} {5} {s} {\mu} {$\sSymbol$} {$\sMeaning$};
+
+	\newif\ifDots
+	\Dotstrue
+	%
+	\fill[red] (1, 4) circle (\rDot);
+	\ifDots
+		\fill[red] (2, 3) circle (\rDot);
+		\fill[red] (3, 3) circle (\rDot);
+		\fill[red] (4, 2) circle (\rDot);
+		\fill[red] (4, 1) circle (\rDot);
+	\else
+		\draw (2,3) node {\Large 2};
+		\draw (3,3) node {\Large 3};
+		\draw (4,2) node {\Large 8};
+		\draw (4,1) node {\Large 2};
+	\fi	
+\end{tikzpicture}
+% ======================================= V
+
+
+% ======================================= A
+\end{document}

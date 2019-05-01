@@ -1,0 +1,22 @@
+\documentclass[border=0 mm]{standalone}
+
+\usepackage{tikz}
+%\usetikzlibrary{patterns,calc,angles,quotes,positioning,arrows}
+\usetikzlibrary{math}
+\usetikzlibrary{decorations.pathmorphing}
+
+\begin{document}
+
+% ======================================= V
+% coil
+\begin{tikzpicture}
+	\draw[
+		line width={(1},
+		decorate,
+		decoration={coil,segment length=0.45em,amplitude=0.8ex},red
+	] 
+	(0, 0) -- (1.5em, 1);
+\end{tikzpicture}
+% ======================================= A
+
+\end{document}

@@ -1,0 +1,1129 @@
+% !TEX spellcheck = en_US
+
+\documentclass{beamer}
+	\usetheme{Dresden}
+%	\usecolortheme{}
+%	\useinnertheme{}
+%	\useoutertheme{}
+%	\setbeamertemplate{bibliography item}[text]
+\usepackage{beamerthemesplit}
+%\usecolortheme{default}
+%\usecolortheme{structure}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+
+
+
+
+%: ==== HB Header Common Packages v20160423 ====V
+	\usepackage[utf8]{inputenc} % To use Unicode characters
+	\usepackage[iso]{datetime}
+	%	\usepackage{etex}
+	
+%	\usepackage[a4paper]{geometry}
+	
+	\usepackage{xcolor}
+	% black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, 
+	% magenta, olive, orange, pink, purple, red, teal, violet, white, yellow
+%	\usepackage[colorlinks=true,linkcolor=red,urlcolor=blue,citecolor=red]%
+%		{hyperref}
+	\usepackage{graphicx,epstopdf}
+	% \graphicspath{{fig}}
+%	\graphicspath{{../common/figures/}}
+	% \DeclareGraphicsExtensions{.pdf,.jpeg,.png,.eps}
+	% \DeclareGraphicsRule{.tif}{png}{.png}%
+	%	{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+%	\usepackage{subfigure}
+%\usepackage{subfig}
+%\usepackage{subcaption}
+%  ==== HB Header Common Packages v20160423 ==== A
+
+
+
+
+
+
+%: tikz ======================================= V
+\usepackage{tikz}
+%\usetikzlibrary{patterns,calc,angles,quotes,positioning,arrows}
+\usetikzlibrary{math}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{arrows.meta}
+	% ======================================= V
+	\newcommand{\stickman}[4]{% \stickman ==== V
+		\draw[
+			evaluate={
+				\x = (#1); % center x
+				\y = (#2); % center y
+				\r = (#3); % radius
+				\xl = \x-\r; % x left
+				\xr = \x+\r; % x right
+				\ya = \y-\r; % body upper
+				\yb = \ya-\r; % arms
+				\yc = \yb-\r; % legs
+				\ybd = \yb-0.5*\r; % arms lower
+				\ycd = \yc-0.5*\r; % legs lower
+			},
+			thick, orange
+		]
+		(\x, \y) circle (\r) % head
+		(\x, \y) node {\textbf{#4}}
+		(\x, \ya) -- (\x,\yc) % body
+		(\xl, \ybd) -- (\x, \yb) -- (\xr, \ybd) %arms
+		(\xl, \ycd) -- (\x, \yc) -- (\xr, \ycd) %arms
+		; %
+	} % \stickman ==== A
+	% ======================================= A
+
+
+% ======================================= A
+
+
+
+
+% ======================================= V
+%: ==== HB References
+\newcommand{\hbDefined}[1]{\textcolor{red}{{#1}}}	
+\newcommand{\hbEmph}[1]{\textcolor{orange}{#1}}
+\newcommand{\hbRemark}[1]{\textcolor{orange}{#1}}
+\newcommand{\hbQuestion}[1]{\textcolor{orange}{Q. #1}}
+\newcommand{\hbCite}[1]{\begin{flushright}\color{blue}\scriptsize\cite{#1}\end{flushright}}
+
+%\newcommand{\hbCite}[1]{%
+%	\begin{flushright}
+%		\color{blue} 
+%		\scriptsize
+%		\cite{#1}
+%	\end{flushright}
+%} % \hbCite
+
+% ==== separator
+\newcommand{\hbSection}[2]{
+	\section{{#1}} 
+	\begin{frame}
+		\hbRemark{{\center{\Huge {#1}}}}\\
+		{#2}
+	\end{frame}
+}
+\newcommand{\hbSeparator}[2]{
+	\begin{frame}
+		\hbRemark{{\center{\Huge {#1}}}}\\
+		{#2}
+	\end{frame}
+}
+% ======================================= A
+
+
+
+
+%: ==== HB Header Math v20190301 ==== V
+	\usepackage{amsmath, amssymb,amsfonts,amsthm}
+	\newcommand{\hbVec}[1]{\mathbf{#1}}	 
+	\newcommand{\hbAbs}[1]{| #1 |}	 
+        \newcommand{\hbNorm}[1]{\left\lVert #1 \right\rVert}	 
+	\newcommand{\hbMat}[1]{\mathbf{#1}}	 
+	\newcommand{\hbSet}[1]{\mathcal{#1}}	 
+	\newcommand{\argmin}[2]{\underset{#1}{\operatorname{arg \, min}}\;#2}
+	\newcommand{\argmax}[2]{\underset{#1}{\operatorname{arg \, max}}\;#2}
+	\theoremstyle{plain}
+	\newtheorem{thm}{Theorem}[section]
+	\newtheorem{lem}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem*{cor}{Corollary}
+	\theoremstyle{definition}
+	\newtheorem{defn}{Definition}[section]
+	\newtheorem{conj}{Conjecture}[section]
+	\newtheorem{exmp}{Example}[section]
+	\theoremstyle{remark}
+	\newtheorem*{rem}{Remark}
+%	\newtheorem*{note}{Note}
+% ==== HB Header Math  ==== A
+
+
+
+
+% ==== HB page number ===================== V
+\newcommand*\oldmacro{}%
+\let\oldmacro\insertshorttitle%
+\renewcommand*\insertshorttitle{%
+ 	\oldmacro\hfill%
+	\insertframenumber\,/\,\inserttotalframenumber}
+% ==== HB page number ===================== A
+
+
+
+
+
+%: ==== specific ============================ V
+\newcommand{\isEq}{\overset{?}{=}}
+% ======================================= A
+
+
+% ======================================= V
+\title{
+	On Protolanguage Language\\
+	An Evolutionary Approach
+}
+
+\author[Bingol]{Haluk O. Bingol}
+
+\institute{
+	Complex Systems Research Lab (SoSLab)\\
+	Dept. of Computer Engineering\\
+	Bogazici University, Istanbul
+}
+
+\date{
+	II. Karmaşık Sistemler ve Veri Bilimi Çalıştayı\\ 
+	Bogazici University, 2019-05-04
+}
+% ======================================= A
+
+
+
+
+\begin{document}
+% ======================================= 
+
+
+
+
+% ======================================= V Title
+\frame{\titlepage}
+% ======================================= A 
+
+
+
+
+% ======================================= V Content
+\begin{frame}\frametitle{Content}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}   
+	    	\tableofcontents
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\includegraphics[width=\columnwidth]%
+			{Fig-Protolanguage.pdf}
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\hbSection{Protolanguage}
+{
+	\begin{flushright}
+		\includegraphics[width=0.6\columnwidth]%
+			{Fig-Protolanguage}\\
+	\end{flushright}
+	\hbCite{%
+		hurford1989Lingua,%
+		nowak1999PNAS,%
+		nowak1999JTB%
+	}
+}
+
+
+
+
+% =======================================
+\subsection{Definition}
+
+
+
+%% @HB keep
+% ======================================= V
+\begin{frame}\frametitle{Protolanguage}
+    	Goal:
+	Agent $i$ wants to transfer a meaning to agent $j$
+
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}   
+		\begin{itemize}
+
+			\item<2->
+			$i$ thinks of a meaning $\mu$
+			
+			\item<3->
+			$i$ encodes $\mu$ to symbol $s$
+			
+			\item<4->
+			channel carries over;\\
+			due to noise $s$ becomes $s'$
+						
+			\item<5->
+			$j$ decodes $s'$ as meaning $\mu'$
+			
+		\end{itemize}
+	\end{column}
+	\begin{column}{.5\linewidth}
+		% ======================================= V
+		\begin{tikzpicture}[scale=0.7]
+		%	% grid === V
+		%	\draw[step=1.0,green,very thin] (0,0) grid (9,4);
+		%	% ==== A
+		
+			\stickman{1}{3}{0.5}{i}
+			\stickman{8}{3}{0.5}{j}
+
+			
+			\uncover<2->{
+				\node at (2, 3.4) {$\mu$};
+			}
+				
+			\uncover<3->{
+				% encoding
+				\draw[-{Latex[length=2mm,width=2mm]},ultra thick,dashed, cyan]  
+					(1.5,3.3) arc (70:0:2.5cm);
+				\draw [rounded corners, darkgray] (1.5, 2) rectangle (3.5, 2.5);
+				\node at (2.5, 2.25) {encoding};
+				\node at (3.5, 1.3) {$s$};
+			}
+			
+			\uncover<4->{
+				% channel
+				\draw [darkgray] (2.8, 1) rectangle (6.2, 0.5);
+				\node at (4.5, 0.8) {channel};
+				\node at (5.7, 1.3) {$s'$};
+			}
+			
+			\uncover<5->{
+				% decoding
+				\draw[-{Latex[length=2mm,width=2mm]},ultra thick,dashed, cyan]  
+					(6, 1) arc (180:110:2.5cm);
+				\draw [rounded corners, darkgray] (5.5, 2) rectangle (7.5, 2.5);
+				\node at (6.5, 2.25) {decoding};
+				\node at (7, 3.4) {$\mu'$};
+			}
+			
+		\end{tikzpicture}
+		% ======================================= A
+	\end{column}
+	\end{columns}
+	
+	\uncover<5->{
+		~\\
+		\hbRemark{Just communication. No grammer!}
+		
+		\hbCite{%
+			hurford1989Lingua,%
+			nowak1999PNAS,%
+			nowak1999JTB%
+		}
+	}
+
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Definitions}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}   
+	    	Sets
+		\begin{itemize}
+		
+			\item
+			set of agents\\
+			$
+				\hbDefined{\mathcal{P}} 
+				\triangleq
+				\{ 1, \cdots, \hbEmph{i}, \hbEmph{j}, \cdots, M \}
+			$\\
+				
+			\item
+			set of meanings of $i$\\
+			$
+				\hbDefined{\mathcal{M}^{(i)}} 
+				\triangleq 
+				\{ 1, \cdots, \hbEmph{\mu}, \cdots, M \}
+			$\\
+			
+			\item
+			set of symbols\\
+			$
+				\hbDefined{\mathcal{S}^{(i)}} 
+				\triangleq 
+				\{ 1, \cdots, \hbEmph{s}, \cdots, S \}
+			$\\
+			
+		\end{itemize}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	    	Questions
+		\begin{itemize}
+		
+			\item
+			$\mathcal{M}^{(i)} \hbEmph{\isEq} \mathcal{M}^{(j)}$
+		
+			\item
+			$\mathcal{S}^{(i)} \hbEmph{\isEq} \mathcal{S}^{(j)}$
+			
+			\item
+			\hbEmph{encoding}?
+			
+			\item
+			\hbEmph{decoding}?
+			
+		\end{itemize}
+
+		\includegraphics[width=\columnwidth]%
+			{Fig-Protolanguage.pdf}\\
+
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= A
+%
+%
+%
+%
+%% ======================================= V
+%\begin{frame}\frametitle{Naming}
+%	\begin{columns}[T]
+%	\begin{column}{.5\linewidth}   
+%	    	What is this?
+%		\includegraphics%[width=\columnwidth]%
+%			{Fig-Coil}
+%		
+%		\uncover<2>{
+%			\begin{itemize}
+%			
+%				\item 
+%				encoding
+%				$\text{Prob} \{\mu_{6} \to s_{1} \} = 1$\\
+%				$\text{Prob} \{\mu_{5} \to s_{2} \} = 2/5$\\
+%				
+%				\item
+%				decoding
+%				$\text{Prob} \{s_{1} \to \mu_{6} \} = 1$\\
+%				$\text{Prob} \{s_{7} \to \mu_{2} \} = 8/10$\\
+%				
+%			\end{itemize}
+%			
+%			Questions
+%			\begin{itemize}
+%			
+%				\item 
+%				Symbol for $\mu_{5}$?
+%			
+%				\item 
+%				Meaning for for $s_{5}$?
+%			\end{itemize}
+%		} 
+%		% \uncover<2>
+%
+%	\end{column}
+%	\begin{column}{.5\linewidth}
+%		Meaning-symbol association\\
+%
+%		\includegraphics<1>[width=\columnwidth]%
+%			{Fig-Association-1}
+%		\includegraphics<2>[width=\columnwidth]%
+%			{Fig-Association-2}
+%	\end{column}
+%	\end{columns}
+%\end{frame}
+%% ======================================= A
+
+
+
+
+% =======================================
+\subsection{Naming}
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Naming}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}   
+	    	What is this?
+		\includegraphics%[width=\columnwidth]%
+			{Fig-Coil}
+		
+		\vspace{1 cm}
+		\begin{itemize}
+			\item 
+			Learning
+			\begin{itemize}
+				\item 
+				obtaining meaning-symbol associations
+			\end{itemize}
+		\end{itemize}
+	\end{column}
+	\begin{column}{.5\linewidth}
+		Meaning-symbol association\\
+
+		\includegraphics[width=\columnwidth]%
+			{Fig-Association-1}
+		\hbCite{%
+			steels1995NamingGame,%
+			hurford1989Lingua,%
+			nowak1999PNAS,%
+			nowak1999JTB%
+		}		
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Naming}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}   
+
+	    	What is this?
+		\includegraphics%[width=\columnwidth]%
+			{Fig-Coil}
+		
+		\begin{itemize}
+		
+			\item 
+			encoding
+			$\text{Prob} \{\mu_{6} \to s_{1} \} = 1$\\
+			$\text{Prob} \{\mu_{5} \to s_{2} \} = 2/5$\\
+			
+			\item
+			decoding
+			$\text{Prob} \{s_{1} \to \mu_{6} \} = 1$\\
+			$\text{Prob} \{s_{7} \to \mu_{2} \} = 8/10$\\
+			
+		\end{itemize}
+		
+		Questions
+		\begin{itemize}
+		
+			\item 
+			Symbol for $\mu_{5}$?
+		
+			\item 
+			Meaning for for $s_{5}$?
+		\end{itemize}
+
+	\end{column}
+	\begin{column}{.5\linewidth}
+		Meaning-symbol association\\
+
+		\includegraphics[width=\columnwidth]%
+			{Fig-Association-2}
+		\hbCite{%
+			steels1995NamingGame,%
+			hurford1989Lingua,%
+			nowak1999PNAS,%
+			nowak1999JTB%
+		}		
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% =======================================
+\subsection{Model}
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Model}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+		\begin{itemize}
+
+			\item 
+			$\hbDefined{\hbVec{A}} = [ a_{\mu s}]$: association matrix
+			\begin{itemize}
+				\item 
+				$
+				\hbDefined{a_{\mu s}} 
+				\triangleq \text{frequency of }\mu \to s
+				$
+			\end{itemize}
+
+			\item 
+			$\hbDefined{\hbVec{E}} = [ e_{\mu s}]$: encription matrix
+			{\small 
+				\begin{align*}
+					\hbDefined{e_{\mu s}} 
+					&\triangleq \text{Prob}\{\mu \to s\}\\ 
+					&\triangleq \frac{a_{\mu s}}{\sum_{s'=1}^{S} a_{\mu s'}}
+				\end{align*}				
+			}
+
+			\item 
+			$\hbDefined{\hbVec{D}} = [ d_{\mu s}]$: decription matrix
+			{\small 
+			\begin{align*}
+				\hbDefined{d_{\mu s}} 
+				&\triangleq \text{Prob}\{s \to \mu\}\\
+				&\triangleq \frac{a_{\mu s}}{\sum_{\mu'=1}^{M} a_{\mu' s}}
+			\end{align*}•
+			}
+		\end{itemize}
+		
+	\end{column}
+	\begin{column}{.5\linewidth}
+		Meaning-symbol association\\
+
+		\includegraphics[width=\columnwidth]%
+			{Fig-Association-2}
+		\hbCite{%
+			steels1995NamingGame,%
+			hurford1989Lingua,%
+			nowak1999PNAS,%
+			nowak1999JTB%
+		}		
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V \TwoPersonLanguage
+\newcommand{\TwoPersonLanguage}{
+	    	2-person language
+		\begin{itemize}
+		
+			\item
+			2 different association matrices
+		
+			\item
+			$\text{Prob}\{ \mu \to \mu\}$\\
+			$
+				\sum_{s = 1}^{S} 
+					e_{\mu s}^{(i)}
+					d_{s \mu}^{(j)}
+			$
+			
+			\item
+			\hbDefined{comprehension} from $i$ to $j$\\
+			$
+				\hbDefined{F(i \to j)} 
+				\triangleq
+					\frac{1}{M}
+					\sum_{\mu = 1}^{M} 
+					{\sum_{s = 1}^{S} 
+						e_{\mu s}^{(i)}
+						d_{s \mu}^{(j)} }
+			$
+			
+			\item
+			\hbDefined{mutual comprehension} from $i$ to $j$\\
+			$
+				\hbDefined{F(i \leftrightarrow j)} 
+				\triangleq
+					\frac{1}{2}
+					(F(i \to j) + F(j \to i))
+			$
+			
+		\end{itemize}
+}
+% ======================================= A \TwoPersonLanguage
+
+% ======================================= V
+\begin{frame}\frametitle{Model}
+	\begin{columns}[T]
+	\begin{column}{.6\linewidth}   
+
+		\TwoPersonLanguage
+
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\begin{tabular}{l|l|l}
+			%
+			~
+			&\includegraphics[width=0.1\columnwidth]%
+				{Fig-stickman1NoName}
+		
+			&\includegraphics[width=0.1\columnwidth]%
+				{Fig-stickman1NoName}
+			\\
+			agent
+			&$i$
+			&$j$\\
+			%
+			\hline
+			%
+			language
+			&$L^{(i)}$
+			&$L^{(j)}$\\
+			%
+			association
+			&$\hbVec{A}^{(i)}$
+			&$\hbVec{A}^{(j)}$\\
+			%
+			encoding
+			&$\hbVec{E}^{(i)}$
+			&$\hbVec{E}^{(j)}$\\
+			%
+			decoding
+			&$\hbVec{D}^{(i)}$
+			&$\hbVec{D}^{(j)}$\\
+		\end{tabular}
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+% ======================================= V
+\begin{frame}\frametitle{Model}
+	\begin{columns}[T]
+	\begin{column}{.6\linewidth}   
+
+		\TwoPersonLanguage
+
+	\end{column}
+	\begin{column}{.5\linewidth}
+
+	    	$N$-person language
+		\begin{itemize}
+		
+			\item
+			$N$ different association matrices
+			
+			\item
+			${N \choose 2}$ mutual comprehensions
+			
+			\item
+			\hbDefined{within community comprehension} for $\hbSet{C} \subseteq \hbSet{P}$\\
+			$
+				\hbDefined{W(\hbSet{C})} 
+				= 	
+				\frac{1}{2 {\hbAbs{\hbSet{C}} \choose 2}} 
+				\sum_{i \in \hbSet{C}}
+				\sum_{
+					\substack{
+						j \in \hbSet{C}\\
+						j \neq i
+					}
+				} 
+				{F(i \leftrightarrow j)}
+			$
+			
+		\end{itemize}
+
+	\end{column}
+	\end{columns}
+	
+	\hbCite{%
+		hurford1989Lingua,%
+		nowak1999PNAS,%
+		nowak1999JTB%
+	}
+
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\hbSection{Evolutionary Dynamics}
+% ======================================= A
+
+
+
+
+% =======================================
+\subsection{Evolution}
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Evolutionary Dynamics}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+		\includegraphics[width=0.5\columnwidth]%
+			{Fig-stickmanCommunity}\\
+		\qquad Generation \hbRemark{$G_{i}$}
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\includegraphics[width=0.5\columnwidth]%
+			{Fig-stickmanCommunity}\\
+		\qquad \hbRemark{Generation $G_{i+1}$}
+	\end{column}
+	\end{columns}
+
+\centering
+	{\small
+		\begin{tabular}{ccccc	}
+			$\searrow$ & & & &$\nearrow$\\
+			&fitness & &natural selection &\\
+			&$\searrow$& &$\nearrow$\\
+			& &reproduction &\\
+		\end{tabular}
+	}
+\end{frame}
+% ======================================= A
+
+
+
+
+% =======================================
+\subsection{Fitness}
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Fitness}
+	
+	\hbEmph{Assumption}
+	\begin{itemize}
+		\item 
+		\hbEmph{Language ability increases fitness}
+	\end{itemize}
+	
+	\vspace{1 cm}
+	``able to speak'' should increase fitness:
+	\vspace{0.5 cm}
+	
+	fitness $\nearrow$ as 
+	\begin{itemize}
+	
+		\item
+		language $\nearrow$
+	
+		\item
+		mutual comprehensions $\nearrow$
+%			$F(i \leftrightarrow j)$
+	
+		\item
+		within community comprehension $\nearrow$
+%			$W(\hbSet{C})$
+	\end{itemize}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\hbSection{Learning}{
+	\vspace{1 cm}
+	Parent Oriented Teacher Selection Causes Language Diversity\\
+	Journal of Theoretical Biology, 429, 2017
+	\hbCite{%
+		cimentepe2017JTB%
+	}
+}
+% ======================================= A
+
+
+
+
+% =======================================
+\subsection{Teacher}
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Teacher Selection}
+	\hbEmph{Assumptions}
+\begin{itemize}
+
+	\item 
+	\hbEmph{Child learns language of parent $p$ or someone ``close'' to parents}
+	
+	\item
+	\hbEmph{Child learns from single teacher $t$}
+
+\end{itemize}
+		
+		
+%%	}\\
+%	\hbEmph{
+%		Assumption:
+%		Child learns from single teacher.
+%	}\\
+
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}   
+	    	Language-wise close (Model-A)
+		\begin{itemize}
+			\item
+			Select $R$ agents language-wise closest to parent $p$
+		\end{itemize}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	    	Physically close (Model-B)
+		\begin{itemize}
+			\item
+			Select $R$ agents physically closest to parent $p$
+			
+			\item
+			Use 1D ring lattice for physical distance
+			
+		\end{itemize}
+	\end{column}
+	\end{columns}
+
+	This $R$-set is called the \hbDefined{imitation set} \hbDefined{$\mathcal{L}_{p}$} of $p$.
+	Select $\ell$ as $t$ among $R$ with probability
+	\[
+		\frac
+			{F(p \leftrightarrow \ell)}
+			{\sum_{j \in \mathcal{L}_{p}} F(p \leftrightarrow \ell)}
+	\]
+
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Child Learns from Teacher}
+	\begin{itemize}
+	
+		\item
+		Initially child has an empty association matrix $\hbMat{A}$
+		
+		\item
+		Child learns by means of sampling
+
+		\begin{itemize}
+			\item
+			Child asks \hbDefined{$Q$} questions for each meaning $\mu$
+			
+			\item
+			teacher answers symbols $s$
+			
+			\item
+			Child populates her association matrix entry $a_{\mu s}$
+		\end{itemize}
+	
+	\end{itemize}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\hbSection{Findings}{
+	\vspace{1 cm}
+	Teacher selection causes language diversification\\
+	\hbCite{%
+		cimentepe2017JTB%
+	}
+}
+% ======================================= A
+
+
+
+
+% =======================================
+\subsection{Global Language}
+
+
+
+
+% ======================================= V \withinComComph
+\newcommand{\withinComComph}{
+		\includegraphics[width=1.1\columnwidth]%
+			{Fig-WStar}\\
+	    	Within-community comprehension \hbEmph{$<W^{*}>$} is \hbEmph{good}
+		\begin{itemize}
+			\item
+			``Dialects'' in communities 
+		\end{itemize}
+} % \withinComComph
+% ======================================= A
+
+% ======================================= V
+\begin{frame}\frametitle{No Global Language}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+		\includegraphics[width=1.1\columnwidth]%
+			{Fig-WP}\\
+	    	Overall comprehension \hbEmph{$W(\mathcal{P})$} is \hbEmph{not good}
+		\begin{itemize}
+			\item
+			\hbEmph{No single language}
+		\end{itemize}
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\withinComComph
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Inter-community Comprehension}
+	High within-community, low inter-community comprehension
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+		\includegraphics[width=1.1\columnwidth]%
+			{Fig-IStar}\\
+	    	Inter-community Comprehensions \hbEmph{$<I^{*}>$} is \hbEmph{low}
+		\begin{itemize}
+			\item
+			It should be low
+		\end{itemize}
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\withinComComph
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% =======================================
+\subsection{Local Languages}
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Many Local Languages}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+		\includegraphics[width=1.1\columnwidth]%
+			{Fig-KStarLogLin}\\
+	    	Number of communities \hbEmph{$<K^{*}>$}
+		\begin{itemize}
+			\item
+			\hbEmph{Many language communities}
+		\end{itemize}
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\withinComComph
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Finding Optimum Language Clusters}
+	(Details)
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+%	    	aaa
+		\begin{itemize}
+			\item
+			$K$-partition of $\hbSet{P}$\\
+			$
+				\hbDefined{\mathbb{P}_K }
+				=
+					 \{ \hbSet{C}_{1}, \hbSet{C}_{2}, \cdots , \hbSet{C}_{K} \}
+			$ 
+			
+			\item
+			Average within-community comprehension\\
+			$
+				\hbDefined{W({\mathbb{P}_K})} 
+				=
+					\frac{1}{K}
+					\sum_{\alpha = 1}^{K}
+						W{\hbSet{C}_{\alpha}}
+			$
+			
+		\end{itemize}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	    	Using $k$-means clustering
+		\begin{itemize}
+			
+			\item
+			Partition with the maximum 
+			average within-community comprehension\\
+			$
+				\hbDefined{\overline{\mathbb{P}_{K}}}
+				=
+					\argmax
+						{K}
+						{W(\mathbb{P}_{K})}.
+			$
+			
+			\item
+			Optimum $K$\\
+			$
+				\hbDefined{K^{*}} 
+				= 
+					\argmax
+						{K}
+						{W(\mathbb{P}_{K})}
+			$
+
+			\item
+			Optimum within-community comprehension\\
+			$
+				\hbDefined{W^{*}}
+				=
+					W(\overline{\mathbb{P}_{K}})
+			$
+			
+		\end{itemize}
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
+% ======================================= References
+\subsection{References}
+
+
+
+
+% ======================================= V References bib
+\begin{frame}[allowframebreaks]\frametitle{References}
+	\setbeamertemplate{bibliography item}[text] % sets numbers in references
+%	\bibliographystyle{abbrv}
+	\bibliographystyle{apalike} % name, year
+%	\bibliographystyle{ieeetr}
+%	\bibliographystyle{elsarticle}
+	\tiny\bibliography{bingol-Language}
+	
+%	\vspace{1 cm}
+	\begin{flushright}
+		\includegraphics[width=0.1\columnwidth]%
+			{Fig-stickmanCommunity}
+		\quad
+		\includegraphics[width=0.1\columnwidth]%
+			{Fig-stickmanCommunity}\\
+		\hbEmph{{\Large Thank You}}
+	\end{flushright}
+	
+\end{frame}
+% ======================================= A
+
+
+
+
+
+% ======================================= 
+\end{document}
