@@ -237,7 +237,7 @@
 % ======================================= V
 \begin{frame}\frametitle{Protolanguage}
     	Goal:
-	Agent $i$ wants to transfer a meaning to agent $j$
+	Agent $i$ wants to \hbEmph{transfer} a \hbEmph{meaning} to agent $j$
 
 	\begin{columns}[T]
 	\begin{column}{.5\linewidth}   
@@ -328,7 +328,7 @@
 		\begin{itemize}
 		
 			\item
-			set of agents\\
+			set of \hbEmph{agents}\\
 			$
 				\hbDefined{\mathcal{P}} 
 				\triangleq
@@ -336,7 +336,7 @@
 			$\\
 				
 			\item
-			set of meanings of $i$\\
+			set of \hbEmph{meanings} of $i$\\
 			$
 				\hbDefined{\mathcal{M}^{(i)}} 
 				\triangleq 
@@ -344,7 +344,7 @@
 			$\\
 			
 			\item
-			set of symbols\\
+			set of \hbEmph{symbols}\\
 			$
 				\hbDefined{\mathcal{S}^{(i)}} 
 				\triangleq 
@@ -458,7 +458,7 @@
 			Learning
 			\begin{itemize}
 				\item 
-				obtaining meaning-symbol associations
+				obtaining meaning-symbol \hbEmph{associations}
 			\end{itemize}
 		\end{itemize}
 	\end{column}
@@ -493,12 +493,12 @@
 		\begin{itemize}
 		
 			\item 
-			encoding
+			\hbEmph{encoding}
 			$\text{Prob} \{\mu_{6} \to s_{1} \} = 1$\\
 			$\text{Prob} \{\mu_{5} \to s_{2} \} = 2/5$\\
 			
 			\item
-			decoding
+			\hbEmph{decoding}
 			$\text{Prob} \{s_{1} \to \mu_{6} \} = 1$\\
 			$\text{Prob} \{s_{7} \to \mu_{2} \} = 8/10$\\
 			
@@ -511,7 +511,7 @@
 			Symbol for $\mu_{5}$?
 		
 			\item 
-			Meaning for for $s_{5}$?
+			Meaning for $s_{5}$?
 		\end{itemize}
 
 	\end{column}
@@ -543,11 +543,11 @@
 % ======================================= V
 \begin{frame}\frametitle{Model}
 	\begin{columns}[T]
-	\begin{column}{.5\linewidth}
+	\begin{column}{.6\linewidth}
 		\begin{itemize}
 
 			\item 
-			$\hbDefined{\hbVec{A}} = [ a_{\mu s}]$: association matrix
+			$\hbDefined{\hbVec{A}} = [ a_{\mu s}]$: \hbEmph{association} matrix
 			\begin{itemize}
 				\item 
 				$
@@ -557,7 +557,7 @@
 			\end{itemize}
 
 			\item 
-			$\hbDefined{\hbVec{E}} = [ e_{\mu s}]$: encription matrix
+			$\hbDefined{\hbVec{E}} = [ e_{\mu s}]$: \hbEmph{encryption} matrix
 			{\small 
 				\begin{align*}
 					\hbDefined{e_{\mu s}} 
@@ -567,13 +567,13 @@
 			}
 
 			\item 
-			$\hbDefined{\hbVec{D}} = [ d_{\mu s}]$: decription matrix
+			$\hbDefined{\hbVec{D}} = [ d_{\mu s}]$: \hbEmph{decryption} matrix
 			{\small 
-			\begin{align*}
-				\hbDefined{d_{\mu s}} 
-				&\triangleq \text{Prob}\{s \to \mu\}\\
-				&\triangleq \frac{a_{\mu s}}{\sum_{\mu'=1}^{M} a_{\mu' s}}
-			\end{align*}•
+				\begin{align*}
+					\hbDefined{d_{\mu s}} 
+					&\triangleq \text{Prob}\{s \to \mu\}\\
+					&\triangleq \frac{a_{\mu s}}{\sum_{\mu'=1}^{M} a_{\mu' s}}
+				\end{align*}
 			}
 		\end{itemize}
 		
@@ -599,22 +599,25 @@
 
 % ======================================= V \TwoPersonLanguage
 \newcommand{\TwoPersonLanguage}{
-	    	2-person language
+	    	\hbEmph{2-person language}
 		\begin{itemize}
 		
 			\item
 			2 different association matrices
 		
 			\item
-			$\text{Prob}\{ \mu \to \mu\}$\\
+			successfully communicating $\mu$\\
 			$
-				\sum_{s = 1}^{S} 
-					e_{\mu s}^{(i)}
-					d_{s \mu}^{(j)}
+				\text{Prob}\{ \mu \to \mu\}
+				\triangleq
+					\sum_{s = 1}^{S} 
+						e_{\mu s}^{(i)}
+						d_{s \mu}^{(j)}
 			$
 			
 			\item
-			\hbDefined{comprehension} from $i$ to $j$\\
+			(average) \hbDefined{comprehension}\\
+			from $i$ to $j$\\
 			$
 				\hbDefined{F(i \to j)} 
 				\triangleq
@@ -626,7 +629,8 @@
 			$
 			
 			\item
-			\hbDefined{mutual comprehension} from $i$ to $j$\\
+			(average) \hbDefined{mutual comprehension}\\
+			from $i$ to $j$\\
 			$
 				\hbDefined{F(i \leftrightarrow j)} 
 				\triangleq
@@ -637,6 +641,9 @@
 		\end{itemize}
 }
 % ======================================= A \TwoPersonLanguage
+
+
+
 
 % ======================================= V
 \begin{frame}\frametitle{Model}
@@ -663,8 +670,8 @@
 			\hline
 			%
 			language
-			&$L^{(i)}$
-			&$L^{(j)}$\\
+			&$L^{\hbEmph{(i)}}$
+			&$L^{\hbEmph{(j)}}$\\
 			%
 			association
 			&$\hbVec{A}^{(i)}$
@@ -683,6 +690,30 @@
 \end{frame}
 % ======================================= A
 
+
+
+
+% ======================================= V
+\begin{frame}\frametitle{Model}
+	\begin{columns}[T]
+	\begin{column}{.6\linewidth}   
+
+		\TwoPersonLanguage
+
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\includegraphics[width=0.8\columnwidth]%
+			{Fig-mu-s-mu}\\
+		\includegraphics[width=0.8\columnwidth]%
+			{Fig-Protolanguage}
+	\end{column}
+	\end{columns}
+\end{frame}
+% ======================================= A
+
+
+
+
 % ======================================= V
 \begin{frame}\frametitle{Model}
 	\begin{columns}[T]
@@ -693,7 +724,7 @@
 	\end{column}
 	\begin{column}{.5\linewidth}
 
-	    	$N$-person language
+	    	\hbEmph{$N$-person language}
 		\begin{itemize}
 		
 			\item
@@ -703,10 +734,11 @@
 			${N \choose 2}$ mutual comprehensions
 			
 			\item
-			\hbDefined{within community comprehension} for $\hbSet{C} \subseteq \hbSet{P}$\\
+			\hbDefined{within community comprehension} for 
+			$\hbSet{C} \subseteq \hbSet{P}$\\
 			$
 				\hbDefined{W(\hbSet{C})} 
-				= 	
+				\triangleq
 				\frac{1}{2 {\hbAbs{\hbSet{C}} \choose 2}} 
 				\sum_{i \in \hbSet{C}}
 				\sum_{
@@ -719,6 +751,10 @@
 			$
 			
 		\end{itemize}
+		\begin{center}
+			\includegraphics[width=0.2\columnwidth]%
+				{Fig-stickmanCommunity}
+		\end{center}
 
 	\end{column}
 	\end{columns}
@@ -759,7 +795,7 @@
 	\begin{column}{.5\linewidth}
 		\includegraphics[width=0.5\columnwidth]%
 			{Fig-stickmanCommunity}\\
-		\qquad \hbRemark{Generation $G_{i+1}$}
+		\qquad Generation \hbRemark{$G_{i+1}$}
 	\end{column}
 	\end{columns}
 
@@ -787,30 +823,44 @@
 % ======================================= V
 \begin{frame}\frametitle{Fitness}
 	
-	\hbEmph{Assumption}
-	\begin{itemize}
-		\item 
-		\hbEmph{Language ability increases fitness}
-	\end{itemize}
+	\begin{columns}[T]
+	\begin{column}{.8\linewidth}   
+
+		\hbEmph{Assumption}
+		\begin{itemize}
+			\item 
+			\hbEmph{Language ability increases fitness}
+		\end{itemize}
+		
+		\vspace{1 cm}
+		``able to speak'' should increase fitness:
+		\vspace{0.5 cm}
+		
+		fitness $\nearrow$ as 
+		\begin{itemize}
+		
+			\item
+			language $\nearrow$
+		
+			\item
+			mutual comprehensions 
+				$F(i \leftrightarrow j)$
+				$\nearrow$
+		
+			\item
+			within community comprehension 
+				$W(\hbSet{C})$
+				$\nearrow$
+		\end{itemize}
+
+	\end{column}
+	\begin{column}{.2\linewidth}
+
+		\includegraphics[width=\columnwidth]%
+			{Fig-stickmanCommunity}
 	
-	\vspace{1 cm}
-	``able to speak'' should increase fitness:
-	\vspace{0.5 cm}
-	
-	fitness $\nearrow$ as 
-	\begin{itemize}
-	
-		\item
-		language $\nearrow$
-	
-		\item
-		mutual comprehensions $\nearrow$
-%			$F(i \leftrightarrow j)$
-	
-		\item
-		within community comprehension $\nearrow$
-%			$W(\hbSet{C})$
-	\end{itemize}
+	\end{column}
+	\end{columns}
 \end{frame}
 % ======================================= A
 
@@ -820,8 +870,8 @@
 % ======================================= V
 \hbSection{Learning}{
 	\vspace{1 cm}
-	Parent Oriented Teacher Selection Causes Language Diversity\\
-	Journal of Theoretical Biology, 429, 2017
+	``Parent Oriented Teacher Selection Causes Language Diversity''\\
+	\emph{Journal of Theoretical Biology}, 429, 2017
 	\hbCite{%
 		cimentepe2017JTB%
 	}
@@ -849,24 +899,17 @@
 	\hbEmph{Child learns from single teacher $t$}
 
 \end{itemize}
-		
-		
-%%	}\\
-%	\hbEmph{
-%		Assumption:
-%		Child learns from single teacher.
-%	}\\
 
 	\begin{columns}[T]
 	\begin{column}{.5\linewidth}   
-	    	Language-wise close (Model-A)
+	    	\hbEmph{Language-wise close} (Model-A)
 		\begin{itemize}
 			\item
 			Select $R$ agents language-wise closest to parent $p$
 		\end{itemize}
 	\end{column}
 	\begin{column}{.5\linewidth}
-	    	Physically close (Model-B)
+	    	\hbEmph{Physically close} (Model-B)
 		\begin{itemize}
 			\item
 			Select $R$ agents physically closest to parent $p$
@@ -878,13 +921,17 @@
 	\end{column}
 	\end{columns}
 
-	This $R$-set is called the \hbDefined{imitation set} \hbDefined{$\mathcal{L}_{p}$} of $p$.
+\begin{itemize}
+	\item
+	This $R$-set is called the \hbDefined{imitation set} 
+	\hbDefined{$\mathcal{L}_{p}$} of $p$.
 	Select $\ell$ as $t$ among $R$ with probability
 	\[
 		\frac
 			{F(p \leftrightarrow \ell)}
 			{\sum_{j \in \mathcal{L}_{p}} F(p \leftrightarrow \ell)}
 	\]
+\end{itemize}
 
 \end{frame}
 % ======================================= A
