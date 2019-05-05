@@ -22,4 +22,4 @@ Examples
 - ![single stickman](Fig-stickman1NoName.pdf)
 - ![a population of stickmen](Fig-stickmanCommunity.pdf)
 
-The [code of my stickman](FigSource\Fig-stickman.tex) is in `FigSource\Fig-stickman.tex`.
+The source code of my stickman is in `FigSource\Fig-stickman.tex`.
