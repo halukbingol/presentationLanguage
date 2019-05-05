@@ -14,7 +14,12 @@ This is the presentation of our paper
 
 
 ## Beamer techniques
-I think it has some value in terms of beamer presentation technique.
+I think it has some value in terms of beamer presentation techniques.
 
 ## stickman
 There is a parametric stickman in `tikz`, too.
+Examples
+- ![single stickman](Fig-stickman1NoName.pdf)
+- ![a population of stickmen](Fig-stickmanCommunity.pdf)
+
+The [code of my stickman](FigSource\Fig-stickman.tex) is in `FigSource\Fig-stickman.tex`.
