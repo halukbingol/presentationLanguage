@@ -14,17 +14,18 @@
 % ======================================= V
 \begin{tikzpicture}
 
-	\def\xMax{5}
-	\def\yMax{5}
 	\def\xMi{0}
-	\def\xMj{6}
 	\def\xS{3}
+	\def\xMj{6}
+	%
+	\def\S{5}
+	\def\M{5}
 		
 	% M i
 	\draw [->,thick, orange]
-		(\xMi, 0) -- (\xMi, {(\yMax+0.5)})
+		(\xMi, 0) -- (\xMi, {(\M+0.5)})
 		node[anchor=east, xshift=-0 cm] {$\mathcal{M}$};
-	\foreach \i in {1, ..., \yMax}{
+	\foreach \i in {1, ..., \M}{
 		\draw 
 			({(\xMi-0.05)}, \i) -- ({(\xMi+0.05)}, \i)
 			node[anchor=east, xshift=-0 cm] {$\mu_{\i}$};
@@ -33,9 +34,9 @@
 	
 	% S
 	\draw [->,thick, orange]
-		(\xS, 0) -- (\xS, {(\xMax+0.5)})
+		(\xS, 0) -- (\xS, {(\S+0.5)})
 		node[anchor=east, xshift=-0 cm] {$\mathcal{S}$};
-	\foreach \i in {1, ..., \xMax}{
+	\foreach \i in {1, ..., \S}{
 		\draw 
 			({(\xS-0.05)}, \i) -- ({(\xS+0.05)}, \i)
 			node[anchor=east, xshift=-0 cm] {$s_{\i}$};
@@ -44,27 +45,37 @@
 	
 	% M j
 	\draw [->,thick, orange]
-		(\xMj, 0) -- (\xMj, {(\yMax+0.5)})
+		(\xMj, 0) -- (\xMj, {(\M+0.5)})
 		node[anchor=east, xshift=-0 cm] {$\mathcal{M}$};
-	\foreach \i in {1, ..., \yMax}{
+	\foreach \i in {1, ..., \M}{
 		\draw 
 			({(\xMj-0.05)}, \i) -- ({(\xMj+0.05)}, \i)
 			node[anchor=east, xshift=-0 cm] {$\mu_{\i}$};
 			\fill[red] (\xMj, \i) circle (0.05);
 	}
+
+	\draw
+		(1.45, 0.5) node {encoding$\to$}
+		(4.45, 0.5) node {decoding$\to$};
 	
 	\draw [-,thick, blue]
 		% Mi to S
-		(\xMi, 4) -- (\xS, 1) -- (\xMj, 4)
-		(\xMi, 3) -- (\xS, 2) -- (\xMj, 4)
-		(\xMi, 3) -- (\xS, 3) -- (\xMj, 5)
-		(\xMi, 2) -- (\xS, 4) -- (\xMj, 2)
-		(\xMi, 1) -- (\xS, 4) -- (\xMj, 1)
+		(\xMi, 2) -- (\xS, 1)
+		(\xMi, 3) -- (\xS, 2)
+		(\xMi, 3) -- (\xS, 3)
+		(\xMi, 4) -- (\xS, 4)
+		(\xMi, 5) -- (\xS, 4)
 		
-%		(\xS, 1) -- (\xMj, 2)
+		(\xS, 1) -- (\xMj, 2)
+		(\xS, 2) -- (\xMj, 3)
+		(\xS, 3) -- (\xMj, 3)
+		(\xS, 4) -- (\xMj, 4)
 		(\xS, 4) -- (\xMj, 5)
-		(\xS, 4) -- (\xMj, 5)
-		; % keep
+
+
+%		(\xS, 1) edge node {0,1,L} (\xMj, 4.5)
+		 
+		; % keep <<<<
 
 \end{tikzpicture}
 % ======================================= V

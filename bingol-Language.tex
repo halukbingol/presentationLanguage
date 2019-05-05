@@ -48,31 +48,6 @@
 \usetikzlibrary{math}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{arrows.meta}
-	% ======================================= V
-	\newcommand{\stickman}[4]{% \stickman ==== V
-		\draw[
-			evaluate={
-				\x = (#1); % center x
-				\y = (#2); % center y
-				\r = (#3); % radius
-				\xl = \x-\r; % x left
-				\xr = \x+\r; % x right
-				\ya = \y-\r; % body upper
-				\yb = \ya-\r; % arms
-				\yc = \yb-\r; % legs
-				\ybd = \yb-0.5*\r; % arms lower
-				\ycd = \yc-0.5*\r; % legs lower
-			},
-			thick, orange
-		]
-		(\x, \y) circle (\r) % head
-		(\x, \y) node {\textbf{#4}}
-		(\x, \ya) -- (\x,\yc) % body
-		(\xl, \ybd) -- (\x, \yb) -- (\xr, \ybd) %arms
-		(\xl, \ycd) -- (\x, \yc) -- (\xr, \ycd) %arms
-		; %
-	} % \stickman ==== A
-	% ======================================= A
 
 
 % ======================================= A
@@ -97,6 +72,12 @@
 %} % \hbCite
 
 % ==== separator
+
+
+
+
+
+% +++++++++++++++++++++++++++++++++++++++ V separator
 \newcommand{\hbSection}[2]{
 	\section{{#1}} 
 	\begin{frame}
@@ -110,6 +91,7 @@
 		{#2}
 	\end{frame}
 }
+% +++++++++++++++++++++++++++++++++++++++ A
 % ======================================= A
 
 
@@ -146,7 +128,9 @@
 \let\oldmacro\insertshorttitle%
 \renewcommand*\insertshorttitle{%
  	\oldmacro\hfill%
-	\insertframenumber\,/\,\inserttotalframenumber}
+	\LocationDate \quad
+	\insertframenumber\,/\,\inserttotalframenumber
+}%
 % ==== HB page number ===================== A
 
 
@@ -155,16 +139,51 @@
 
 %: ==== specific ============================ V
 \newcommand{\isEq}{\overset{?}{=}}
+
+
+
+
+	% +++++++++++++++++++++++++++++++++++++++ V
+	\newcommand{\stickman}[4]{% \stickman ==== V
+		\draw[
+			evaluate={
+				\x = (#1); % center x
+				\y = (#2); % center y
+				\r = (#3); % radius
+				\xl = \x-\r; % x left
+				\xr = \x+\r; % x right
+				\ya = \y-\r; % body upper
+				\yb = \ya-\r; % arms
+				\yc = \yb-\r; % legs
+				\ybd = \yb-0.5*\r; % arms lower
+				\ycd = \yc-0.5*\r; % legs lower
+			},
+			thick, orange
+		]
+		(\x, \y) circle (\r) % head
+		(\x, \y) node {\textbf{#4}}
+		(\x, \ya) -- (\x,\yc) % body
+		(\xl, \ybd) -- (\x, \yb) -- (\xr, \ybd) %arms
+		(\xl, \ycd) -- (\x, \yc) -- (\xr, \ycd) %arms
+		; %
+	} % \stickman ==== A
+	% +++++++++++++++++++++++++++++++++++++++ A
 % ======================================= A
 
 
-% ======================================= V
-\title{
+%: ==title ======================================= V
+\title[
+	On Protolanguage Language 
+]{
 	On Protolanguage Language\\
 	An Evolutionary Approach
 }
 
-\author[Bingol]{Haluk O. Bingol}
+\author[
+	Bingol
+]{
+	Haluk O. Bingol
+}
 
 \institute{
 	Complex Systems Research Lab (SoSLab)\\
@@ -176,6 +195,8 @@
 	II. Karmaşık Sistemler ve Veri Bilimi Çalıştayı\\ 
 	Bogazici University, 2019-05-04
 }
+\newcommand\LocationDate{@ KSVB2019}  % conference
+
 % ======================================= A
 
 
@@ -233,7 +254,7 @@
 
 
 
-%% @HB keep
+
 % ======================================= V
 \begin{frame}\frametitle{Protolanguage}
     	Goal:
@@ -259,7 +280,7 @@
 		\end{itemize}
 	\end{column}
 	\begin{column}{.5\linewidth}
-		% ======================================= V
+		% +++++++++++++++++++++++++++++++++++++++ V 
 		\begin{tikzpicture}[scale=0.7]
 		%	% grid === V
 		%	\draw[step=1.0,green,very thin] (0,0) grid (9,4);
@@ -299,7 +320,7 @@
 			}
 			
 		\end{tikzpicture}
-		% ======================================= A
+		% +++++++++++++++++++++++++++++++++++++++ A
 	\end{column}
 	\end{columns}
 	
@@ -378,62 +399,6 @@
 	\end{columns}
 \end{frame}
 % ======================================= A
-
-
-
-
-% ======================================= A
-%
-%
-%
-%
-%% ======================================= V
-%\begin{frame}\frametitle{Naming}
-%	\begin{columns}[T]
-%	\begin{column}{.5\linewidth}   
-%	    	What is this?
-%		\includegraphics%[width=\columnwidth]%
-%			{Fig-Coil}
-%		
-%		\uncover<2>{
-%			\begin{itemize}
-%			
-%				\item 
-%				encoding
-%				$\text{Prob} \{\mu_{6} \to s_{1} \} = 1$\\
-%				$\text{Prob} \{\mu_{5} \to s_{2} \} = 2/5$\\
-%				
-%				\item
-%				decoding
-%				$\text{Prob} \{s_{1} \to \mu_{6} \} = 1$\\
-%				$\text{Prob} \{s_{7} \to \mu_{2} \} = 8/10$\\
-%				
-%			\end{itemize}
-%			
-%			Questions
-%			\begin{itemize}
-%			
-%				\item 
-%				Symbol for $\mu_{5}$?
-%			
-%				\item 
-%				Meaning for for $s_{5}$?
-%			\end{itemize}
-%		} 
-%		% \uncover<2>
-%
-%	\end{column}
-%	\begin{column}{.5\linewidth}
-%		Meaning-symbol association\\
-%
-%		\includegraphics<1>[width=\columnwidth]%
-%			{Fig-Association-1}
-%		\includegraphics<2>[width=\columnwidth]%
-%			{Fig-Association-2}
-%	\end{column}
-%	\end{columns}
-%\end{frame}
-%% ======================================= A
 
 
 
@@ -597,50 +562,50 @@
 
 
 
-% ======================================= V \TwoPersonLanguage
+% +++++++++++++++++++++++++++++++++++++++ V \TwoPersonLanguage
 \newcommand{\TwoPersonLanguage}{
-	    	\hbEmph{2-person language}
-		\begin{itemize}
+    	\hbEmph{2-person language}
+	\begin{itemize}
+	
+		\item
+		2 different association matrices
+	
+		\item
+		successfully communicating $\mu$\\
+		$
+			\text{Prob}\{ \mu \to \mu\}
+			\triangleq
+				\sum_{s = 1}^{S} 
+					e_{\mu s}^{(i)}
+					d_{s \mu}^{(j)}
+		$
 		
-			\item
-			2 different association matrices
+		\item
+		(average) \hbDefined{comprehension}\\
+		from $i$ to $j$\\
+		$
+			\hbDefined{F(i \to j)} 
+			\triangleq
+				\frac{1}{M}
+				\sum_{\mu = 1}^{M} 
+				{\sum_{s = 1}^{S} 
+					e_{\mu s}^{(i)}
+					d_{s \mu}^{(j)} }
+		$
 		
-			\item
-			successfully communicating $\mu$\\
-			$
-				\text{Prob}\{ \mu \to \mu\}
-				\triangleq
-					\sum_{s = 1}^{S} 
-						e_{\mu s}^{(i)}
-						d_{s \mu}^{(j)}
-			$
-			
-			\item
-			(average) \hbDefined{comprehension}\\
-			from $i$ to $j$\\
-			$
-				\hbDefined{F(i \to j)} 
-				\triangleq
-					\frac{1}{M}
-					\sum_{\mu = 1}^{M} 
-					{\sum_{s = 1}^{S} 
-						e_{\mu s}^{(i)}
-						d_{s \mu}^{(j)} }
-			$
-			
-			\item
-			(average) \hbDefined{mutual comprehension}\\
-			from $i$ to $j$\\
-			$
-				\hbDefined{F(i \leftrightarrow j)} 
-				\triangleq
-					\frac{1}{2}
-					(F(i \to j) + F(j \to i))
-			$
-			
-		\end{itemize}
+		\item
+		(average) \hbDefined{mutual comprehension}\\
+		from $i$ to $j$\\
+		$
+			\hbDefined{F(i \leftrightarrow j)} 
+			\triangleq
+				\frac{1}{2}
+				(F(i \to j) + F(j \to i))
+		$
+		
+	\end{itemize}
 }
-% ======================================= A \TwoPersonLanguage
+% +++++++++++++++++++++++++++++++++++++++ A \TwoPersonLanguage
 
 
 
@@ -848,7 +813,7 @@
 				$\nearrow$
 		
 			\item
-			within community comprehension 
+			\hbEmph{within community comprehension} 
 				$W(\hbSet{C})$
 				$\nearrow$
 		\end{itemize}
@@ -954,7 +919,7 @@
 			Child asks \hbDefined{$Q$} questions for each meaning $\mu$
 			
 			\item
-			teacher answers symbols $s$
+			Teacher answers symbols $s$
 			
 			\item
 			Child populates her association matrix entry $a_{\mu s}$
@@ -986,7 +951,7 @@
 
 
 
-% ======================================= V \withinComComph
+% +++++++++++++++++++++++++++++++++++++++ V \withinComComph
 \newcommand{\withinComComph}{
 		\includegraphics[width=1.1\columnwidth]%
 			{Fig-WStar}\\
@@ -996,7 +961,10 @@
 			``Dialects'' in communities 
 		\end{itemize}
 } % \withinComComph
-% ======================================= A
+% +++++++++++++++++++++++++++++++++++++++ A \withinComComph
+
+
+
 
 % ======================================= V
 \begin{frame}\frametitle{No Global Language}
@@ -1149,25 +1117,37 @@
 % ======================================= V References bib
 \begin{frame}[allowframebreaks]\frametitle{References}
 	\setbeamertemplate{bibliography item}[text] % sets numbers in references
+	% style
 %	\bibliographystyle{abbrv}
 	\bibliographystyle{apalike} % name, year
 %	\bibliographystyle{ieeetr}
 %	\bibliographystyle{elsarticle}
+
+	% bib
 	\tiny\bibliography{bingol-Language}
 	
-%	\vspace{1 cm}
-	\begin{flushright}
-		\includegraphics[width=0.1\columnwidth]%
-			{Fig-stickmanCommunity}
-		\quad
-		\includegraphics[width=0.1\columnwidth]%
-			{Fig-stickmanCommunity}\\
-		\hbEmph{{\Large Thank You}}
-	\end{flushright}
-	
+	% thanks
+	\begin{columns}[T]
+	\begin{column}{.7\linewidth}
+		\vspace{1 cm}
+		source: \href
+			{https://github.com/halukbingol/presentationLanguage.git}
+			{https://github.com/halukbingol/presentationLanguage.git}
+	\end{column}
+	\begin{column}{.3\linewidth}
+	%	\vspace{1 cm}
+		\begin{flushright}
+			\includegraphics[width=0.3\columnwidth]%
+				{Fig-stickmanCommunity}
+			\quad
+			\includegraphics[width=0.3\columnwidth]%
+				{Fig-stickmanCommunity}\\
+			\hbEmph{{\Large Thank You}}
+		\end{flushright}
+	\end{column}
+	\end{columns}	
 \end{frame}
 % ======================================= A
-
 
 
 
